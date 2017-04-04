@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { 
+  Component,trigger,state,style,transition,animate,keyframes 
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `<button [@myTrigger]='state'>Respect HTML</button>`,
+  styles: [],
+  animations: [
+    trigger('myTrigger',[
+      //state()
+      //transition()
+    ])
+  ]
 })
 export class AppComponent {
-  title = 'app works!';
+  state: string = "small";
 }
