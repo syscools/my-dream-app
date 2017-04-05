@@ -42,8 +42,11 @@ import {
               
             //transition('* => *',animate('500ms ease-in'))
             transition('void => *',[
-                style({ opacity: '0',transform:'translateY(50px)' }),
-                animate('500ms 3s ease-out')
+                animate('500',keyframes([
+                    style({opacity:0, transform: 'translateY(-30px)',offset:0}),
+                    style({opacity:1, transform: 'translateY(5px)',offset:0.3}),
+                    style({opacity:1, transform: 'translateY(0)',offset:1})
+                ]))
             ])
         ])
     ]
