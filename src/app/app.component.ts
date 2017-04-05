@@ -47,7 +47,7 @@ import {
 
             transition('void => *',[
                 style({ opacity: '0', transform: 'translateY(20px)' }),
-                animate('500ms')
+                animate('500ms 3s')
             ])
 
             /*
