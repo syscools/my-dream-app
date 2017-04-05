@@ -19,18 +19,17 @@ import {
                 transform: 'scale(5.4)'
             })),
 
-            transition('large <=> small',animate('500ms ease-in'))
-            //transition('large => small,small => large',animate('500ms ease-in'))
-            //transition('large => small,small <= large',animate('500ms ease-in')) // cannot be
-            /*
-            transition('large => small',animate('500ms ease-in')),
-            transition('small => large',animate('500ms ease-in'))
-            */
+            state('extra-large',style({
+                backgroundColor: '#ff0000',
+                transform: 'scale(5.4)'
+            })),
+
+            transition('* => small',animate('500ms ease-in'))
         ])
     ]
 })
 export class AppComponent {
-    state: string = 'small';
+    state: string = 'extra-large';
 
     toggleState() {
         this.state = (this.state == 'small' ? 'large': 'small');
