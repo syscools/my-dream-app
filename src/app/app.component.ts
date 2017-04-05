@@ -4,7 +4,10 @@ import {
 
 @Component({
     selector: 'app-root',
-    template: `<button [@myTrigger]='state' (click)='toggleState()'>Respect HTML</button>`,
+    template: `<button (click)='toggleState()'>Respect HTML</button>
+        <ul>
+            <li *ngFor="let item of items" [@myTrigger]='state'>{{ item }}</li>
+        </ul>`,
     styles: [],
     animations: [
         trigger('myTrigger',[
@@ -23,16 +26,25 @@ import {
                 backgroundColor: '#ff0000',
                 transform: 'scale(5.4)'
             })),
-
-            transition('* => *',animate('500ms ease-in'))
+              
+            state('fadeIn',style({
+                opacity: '1'
+            })),
+              
+            //transition('* => *',animate('500ms ease-in'))
+            transition('void => *',[
+                style({ opacity: '0',transform:'translateY(20px)' }),
+                animate('500ms')
+            ])
         ])
     ]
 })
 export class AppComponent {
     state: string = 'extra-large';
+    items = [];
 
     toggleState() {
-        this.state = (this.state == 'small' ? 'large': 'small');
-        console.log("toggle state = " + this.state);
+        this.items.push('idiot : ' + this.state);
+        this.state = "fadeIn";    
     }
 }
