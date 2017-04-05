@@ -24,7 +24,7 @@ import {
                 transform: 'scale(5.4)'
             })),
 
-            transition('* => small',animate('500ms ease-in'))
+            transition('* => *',animate('500ms ease-in'))
         ])
     ]
 })
