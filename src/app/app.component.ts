@@ -19,7 +19,13 @@ import {
                 transform: 'scale(5.4)'
             })),
 
-            //transition('large <=> small',animate('100ms'))
+            transition('large <=> small',animate('500ms ease-in'))
+            //transition('large => small,small => large',animate('500ms ease-in'))
+            //transition('large => small,small <= large',animate('500ms ease-in')) // cannot be
+            /*
+            transition('large => small',animate('500ms ease-in')),
+            transition('small => large',animate('500ms ease-in'))
+            */
         ])
     ]
 })
