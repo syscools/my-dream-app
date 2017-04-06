@@ -5,7 +5,7 @@ import {
 @Component({
     selector: 'app-root',
 
-    template: `<button (click)='toggleState()'>Respect HTML</button>
+    template: `<button (click)='toggleState()' [@removeMe]='btnState'>Respect HTML</button>
         <ul>
             <li *ngFor="let item of items" [@myTrigger]='state' (@myTrigger.done)="animDone($event)" (@myTrigger.start)="animStart($event)">{{ item }}</li>
         </ul>
@@ -63,6 +63,21 @@ import {
                 ]))
             ])
 
+        ]),
+
+        trigger('removeMe',[
+            state('out',style({
+                transform: 'scale(0)',
+                opacity:0
+            })),
+
+            transition('* => out',[
+                animate('500ms 0s ease-in',keyframes([
+                    style({opacity:1,transform:'translateX(-8px)',offset: 0}),
+                    style({opacity:1,transform:'translateX(0)',offset: 0.3}),
+                    style({opacity:0,transform:'translateX(50px)',offset: 1})
+                ]))
+            ])  
         ])
     ]
 })
@@ -72,6 +87,7 @@ export class AppComponent {
     //items = [];
     items = new Array();
     animDetails:string = 'Waiting';
+    btnState:string = 'in';
     
     /*@xxx
     constructor(private cdRef:ChangeDetectorRef) {
@@ -81,6 +97,7 @@ export class AppComponent {
     toggleState() {
         this.items.push('apple : ' + this.state);
         this.state = "fadeIn";    
+        this.btnState = 'out';
     }
 
     animStart(event:any) {
