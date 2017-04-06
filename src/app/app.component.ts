@@ -25,9 +25,31 @@ import {
 })
 export class AppComponent {
     state: string = 'small';
+    n = 0;
 
     toggleState() {
-        this.state = (this.state == 'small' ? 'large': 'small');
-        console.log("toggle state = " + this.state);
+
+        switch (this.n % 3) {
+            case 0:
+            console.log("case: 0");
+            this.state = 'small';
+            break
+
+            case 1:
+            console.log("case: 1");
+            this.state = 'medium';
+            break;
+
+            case 2:
+            console.log("case: 2");
+            this.state = 'large';
+            break;
+
+            default:
+            console.log("case: default");
+            break
+        }
+
+        this.n++;
     }
 }
