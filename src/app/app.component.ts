@@ -14,12 +14,21 @@ import {
                 transform: 'scale(1)'
             })),
 
+            state('medium',style({
+                backgroundColor: '#00FF00',
+                transform: 'scale(3)'
+            })),
+
             state('large',style({
                 backgroundColor: '#ff0000',
                 transform: 'scale(5.4)'
             })),
 
             //transition('large <=> small',animate('100ms'))
+            transition('* <=> *', [
+                style({backgroundColor:'#0000ff',transform: 'scale(7)'}),
+                animate('1000ms')
+            ])
         ])
     ]
 })
