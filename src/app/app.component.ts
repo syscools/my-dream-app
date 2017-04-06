@@ -7,7 +7,7 @@ import {
 
     template: `<button (click)='toggleState()'>Respect HTML</button>
         <ul>
-            <li *ngFor="let item of items" [@myTrigger]='state'>{{ item }}</li>
+            <li *ngFor="let item of items" [@myTrigger]='state' (@myTrigger.done)="animDone($event)" (@myTrigger.start)="animStart($event)">{{ item }}</li>
         </ul>`,
 
     styles: [`
@@ -53,7 +53,7 @@ import {
             */
 
             transition('void => *',[
-                animate(500,keyframes([
+                animate(2000,keyframes([
                     style({opacity:0, transform: 'translateY(-30px)',offset:0}),
                     style({opacity:1, transform: 'translateY(5px) scale(1.2)',offset:0.3}),
                     style({opacity:1, transform: 'translateY(0)',offset:1})
@@ -66,10 +66,19 @@ import {
 
 export class AppComponent {
     state: string = 'extra-large';
-    items = [];
+    //items = [];
+    items = new Array();
 
     toggleState() {
         this.items.push('apple : ' + this.state);
         this.state = "fadeIn";    
+    }
+
+    animStart(event:any) {
+        console.log(event);
+    }
+
+    animDone(event:any) {
+        console.log('Animation Finished!');
     }
 }
