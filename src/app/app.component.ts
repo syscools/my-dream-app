@@ -46,8 +46,9 @@ import {
             //transition('* => *',animate('5000ms ease-in'))
 
             transition('void => *',[
-                style({ opacity: '0', transform: 'translateY(20px)' }),
-                animate('500ms 3s')
+                style({ opacity: '0', transform: 'translateY(50px)' }),
+                //animate('500ms 0s ease-in')
+                animate('500ms 0s ease-out')
             ])
 
             /*
