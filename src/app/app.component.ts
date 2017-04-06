@@ -44,22 +44,22 @@ import {
             })),
               
             //transition('* => *',animate('5000ms ease-in'))
-
+            /*
             transition('void => *',[
                 style({ opacity: '0', transform: 'translateY(50px)' }),
                 //animate('500ms 0s ease-in')
                 animate('500ms 0s ease-out')
             ])
+            */
 
-            /*
             transition('void => *',[
-                animate('500',keyframes([
+                animate(500,keyframes([
                     style({opacity:0, transform: 'translateY(-30px)',offset:0}),
                     style({opacity:1, transform: 'translateY(5px) scale(1.2)',offset:0.3}),
                     style({opacity:1, transform: 'translateY(0)',offset:1})
                 ]))
             ])
-            */
+
         ])
     ]
 })
