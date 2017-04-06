@@ -1,5 +1,5 @@
 import { 
-    Component,trigger,state,style,transition,animate,keyframes
+    Component,trigger,state,style,transition,animate,keyframes/*@xxx, ChangeDetectorRef */
 } from '@angular/core';
 
 @Component({
@@ -8,7 +8,10 @@ import {
     template: `<button (click)='toggleState()'>Respect HTML</button>
         <ul>
             <li *ngFor="let item of items" [@myTrigger]='state' (@myTrigger.done)="animDone($event)" (@myTrigger.start)="animStart($event)">{{ item }}</li>
-        </ul>`,
+        </ul>
+        {{ animDetails }}
+        `,
+
 
     styles: [`
         ul { list-style-type:node; margin:30px 30px 0 0; padding:0;}
@@ -68,6 +71,12 @@ export class AppComponent {
     state: string = 'extra-large';
     //items = [];
     items = new Array();
+    animDetails:string = 'Waiting';
+    
+    /*@xxx
+    constructor(private cdRef:ChangeDetectorRef) {
+
+    } */
 
     toggleState() {
         this.items.push('apple : ' + this.state);
@@ -79,6 +88,8 @@ export class AppComponent {
     }
 
     animDone(event:any) {
+        this.animDetails = 'It took me ' + event.totalTime + 'ms to copmlete';
         console.log('Animation Finished!');
+        //@xxx this.cdRef.detectChanges();
     }
 }
