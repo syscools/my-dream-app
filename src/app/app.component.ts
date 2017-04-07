@@ -4,19 +4,19 @@ import {
 
 @Component({
     selector: 'app-root',
-    template: `<button [@myTrigger]='state' (click)='toggleState()'>Respect HTML</button>`,
+    template: `<button [@myTrigger]='state' (click)='toggleState()'>{{ ident }}</button>`,
     styles: [],
     animations: [
         trigger('myTrigger',[
 
             state('small',style({
-                backgroundColor: '#cfd8dc',
+                backgroundColor: '#FFFF00',
                 transform: 'scale(1)'
             })),
 
             state('medium',style({
                 backgroundColor: '#00FF00',
-                transform: 'scale(3)'
+                transform: 'scale(10) translate(23px,9px)'
             })),
 
             state('large',style({
@@ -24,21 +24,30 @@ import {
                 transform: 'scale(5.4)'
             })),
 
-            //transition('large <=> small',animate('100ms'))
+            transition('* <=> *',animate('1000ms'))
+
+            /* 
             transition('* <=> *', [
-                style({backgroundColor:'#0000ff',transform: 'scale(7)'}),
+                //style({backgroundColor:'#0000ff',transform: 'translateX(100px)'}),
+                //style({backgroundColor: '#000000',transform: 'translateX(100px) translateY(100px)'}),
+                style({backgroundColor: '#000000',transform: 'translate(20px,200px)'}),
                 animate('1000ms')
             ])
+            */
+            
         ])
     ]
 })
 export class AppComponent {
-    state: string = 'small';
+    state: string = 'medium';
     n = 0;
+    ident = 'dexter';
+    names = ['alpha','abcdef','gamma','delta'];
+    //names = ['AAA','BBB','CCC','DDD','EEE','FFF'];
 
     toggleState() {
-
-        switch (this.n % 3) {
+        var i = this.n % 3;
+        switch (i) {
             case 0:
             console.log("case: 0");
             this.state = 'small';
@@ -58,7 +67,7 @@ export class AppComponent {
             console.log("case: default");
             break
         }
-
+        this.ident = this.names[i];
         this.n++;
     }
 }
